@@ -3,6 +3,12 @@ const http = require("http");
 const { Server } = require("socket.io");
 
 const app = express();
+app.get("/health", (req, res) => {
+  res.json({
+    online: true,
+    players: players.size
+  });
+});
 const server = http.createServer(app);
 
 const io = new Server(server, {
